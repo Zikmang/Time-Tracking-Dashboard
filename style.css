@@ -182,7 +182,12 @@ body {
   .profile-card {
     grid-column: 1 / -1;
   }
-
+  .time-frame-buttons{
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    
+  }
   .cards-container {
     grid-template-columns: 1fr;
   }
