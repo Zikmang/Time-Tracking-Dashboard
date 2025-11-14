@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="index.js"></script>
+  <title>Frontend Mentor | Time tracking dashboard</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="profile-card">
+      <div class="user-info">
+        <img src="images/image-jeremy.png" alt="Profile Picture">
+        <h3>Report for</h3>
+        <h1>Jeremy Robson</h1>
+      </div>
+      <div class="time-frame-buttons">
+        <button class="timeframe-btn" data-timeframe ="daily">Daily</button>
+        <button class="timeframe-btn active" data-timeframe ="weekly">Weekly</button>
+        <button class="timeframe-btn" data-timeframe ="monthly">Monthly</button>
+      </div>
+    </div>
+
+    <div id="cards-container" class="cards-container">
+
+    </div>
+
+  </main>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Zikmang</a>.
+  </div>
+</body>
+</html>
