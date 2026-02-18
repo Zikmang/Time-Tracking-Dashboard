@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+## Time Tracking Dashboard
+A fully responsive, type-safe dashboard built with **React**, **TypeScript**, and **Tailwind CSS**.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project goes beyond a simple UI implementation by simulating real-world application constraints, including asynchronous data fetching, loading states, and scalable component architecture.
 
-Currently, two official plugins are available:
+# Key Features
+- **Responsive Layout:** Mobile-first design using CSS Grid that    seamlessly adapts to a "Bento Grid" style on desktop.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Smooth Animations:** Powered by Framer Motion, numbers slide and fade gracefully when switching timeframes.
 
-## React Compiler
+- **Real-World Data Simulation:** A custom hook (useDashboardData) mimics API latency.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Skeleton Loading State:** Prevents layout shifts (CLS) by showing a shimmering skeleton UI while data loads.
 
-## Expanding the ESLint configuration
+- **Scalable Architecture:** Strict separation of "Smart" Containers (Logic) and "Dumb" UI components (Presentation).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
+- **Framework:** React 18 (Vite)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Language:** TypeScript 
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Styling:** Tailwind CSS
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Animation:** Framer Motion
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Architecture & Design Patterns
+I deliberately avoided "magic strings" and messy if/else chains by implementing robust patterns:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **The Configuration Map Pattern**
+Instead of hardcoding colors and icons inside components, I used a centralized config object. This makes adding new categories (like "Gaming" or "Coding") as simple as adding one line to a file.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. **Custom Hooks & Skeleton UI**
+I abstracted the data fetching logic into useDashboardData. This hook manages the loading, error, and data states. While loading, the UI renders **Skeleton Cards** that match the exact dimensions of the real content, ensuring a smooth user experience.
+
+3. **Component Composition**
+- **DashboardLayout.tsx (Smart):** Handles state (daily/weekly/monthly), data fetching, and grid logic.
+
+- **TrackingCard.tsx (Dumb):** Purely presentational. It receives data via props and uses framer-motion to handle the enter/exit animations.
+
+**Author:** Zikmang
+**Challenge by:** Frontend Mentor
